@@ -79,12 +79,20 @@
     //
     // test if a specific row on this board contains a conflict
     hasRowConflictAt: function(rowIndex) {
-      return false; // fixme
+      return false;
     },
 
     // test if any rows on this board contain conflicts
     hasAnyRowConflicts: function() {
-      return false; // fixme
+      var hasConflict = false;
+      _.each(this.attributes, function(row){
+        _.each(row, function(value){
+          if(value === 1){
+            hasConflict = true;
+          }
+        });
+      });
+      return hasConflict;
     },
 
 
