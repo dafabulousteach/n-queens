@@ -79,17 +79,35 @@
     //
     // test if a specific row on this board contains a conflict
     hasRowConflictAt: function(rowIndex) {
-      return false;
+      // var hasConflict = false;
+      // var count = 0;
+      // _.each(this.attributes, function(row, index){ // loop through the row
+      //   for(var i = 0; i < rowIndex.length; i++){// if there is a value of 1
+      //     if(rowIndex[i] === 1){// increment the count 
+      //       count ++;
+      //       if(count > 1){ // if count is greater than 1
+      //         hasConflict = true; 
+      //       }
+      //     }
+      //   }
+      // });
+    
+      // return hasConflict;
+
     },
 
     // test if any rows on this board contain conflicts
     hasAnyRowConflicts: function() {
       var hasConflict = false;
-      _.each(this.attributes, function(row){
-        _.each(row, function(value){
+      var count = 0;
+      _.each(this.attributes, function(row, index){
+        _.each(row, function(value, i){
           if(value === 1){
-            hasConflict = true;
+            count ++;
           }
+            if(count > 1){
+              hasConflict = true;
+            }
         });
       });
       return hasConflict;
@@ -102,12 +120,35 @@
     //
     // test if a specific column on this board contains a conflict
     hasColConflictAt: function(colIndex) {
-      return false; // fixme
+      // var hasConflict = false;
+
+      // _.each(this.attributes, function(row, index){
+      //   if(colIndex === row[index]){
+      //     hasConflict = true;
+      //   }
+      // });
+      // return hasConflict; // fixme
+  
+   
     },
 
     // test if any columns on this board contain conflicts
     hasAnyColConflicts: function() {
-      return false; // fixme
+      var hasConflict = false;
+
+      _.each(this.attributes, function(row, index){
+        console.log(row);
+        if(row[index] !== undefined){
+          row.indexOf(1);
+        }
+        
+        // if(row[index] !== 1){
+        //   row[index] + 1;
+        // } else {
+        //   hasConflict = true;
+        // }
+      });
+      return hasConflict; // fixme
     },
 
 
