@@ -79,38 +79,27 @@
     //
     // test if a specific row on this board contains a conflict
     hasRowConflictAt: function(rowIndex) {
-      // var hasConflict = false;
-      // var count = 0;
-      // _.each(this.attributes, function(row, index){ // loop through the row
-      //   for(var i = 0; i < rowIndex.length; i++){// if there is a value of 1
-      //     if(rowIndex[i] === 1){// increment the count 
-      //       count ++;
-      //       if(count > 1){ // if count is greater than 1
-      //         hasConflict = true; 
-      //       }
-      //     }
-      //   }
-      // });
-    
-      // return hasConflict;
+      var pieceCount = 0;
+      var rows = this.rows(); 
+      for(var i = 0; i < rows.length; i++){ // loop through the rows
+        if(rows[rowIndex][i] === 1){ // if the value of the square equals to 1
+          pieceCount++; // increase the pieceCount
+        }
+      }
 
+      return !!(pieceCount > 1); // force pieceCount into a boolean
     },
 
     // test if any rows on this board contain conflicts
     hasAnyRowConflicts: function() {
-      var hasConflict = false;
-      var count = 0;
-      _.each(this.attributes, function(row, index){
-        _.each(row, function(value, i){
-          if(value === 1){
-            count ++;
-          }
-            if(count > 1){
-              hasConflict = true;
-            }
-        });
-      });
-      return hasConflict;
+     var rows = this.rows();
+     var hasConflict = false;
+     for(var i = 0; i < rows.length; i++) {
+      if(this.hasRowConflictAt(i)){
+        hasConflict = true;
+      }
+     }
+    return hasConflict;
     },
 
 
@@ -120,35 +109,26 @@
     //
     // test if a specific column on this board contains a conflict
     hasColConflictAt: function(colIndex) {
-      // var hasConflict = false;
-
-      // _.each(this.attributes, function(row, index){
-      //   if(colIndex === row[index]){
-      //     hasConflict = true;
-      //   }
-      // });
-      // return hasConflict; // fixme
-  
-   
+      var pieceCount = 0;
+      var rows = this.rows();
+      for(var i = 0; i < rows.length; i++){
+        if(rows[i][colIndex] === 1){
+          pieceCount++;
+        }
+      }
+    return !!(pieceCount > 1);
     },
 
     // test if any columns on this board contain conflicts
     hasAnyColConflicts: function() {
-      var hasConflict = false;
-
-      _.each(this.attributes, function(row, index){
-        console.log(row);
-        if(row[index] !== undefined){
-          row.indexOf(1);
-        }
-        
-        // if(row[index] !== 1){
-        //   row[index] + 1;
-        // } else {
-        //   hasConflict = true;
-        // }
-      });
-      return hasConflict; // fixme
+     var rows = this.rows();
+     var hasConflict = false;
+     for(var i = 0; i < rows.length; i++){
+      if(this.hasColConflictAt(i)){
+        hasConflict = true;
+      }
+     }
+     return hasConflict;
     },
 
 
